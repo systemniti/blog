@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Nīti — Chanakya's Manual for Designing Resilient Systems</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FEFEFE;
+            --secondary: #F8FAFC;
+            --accent: #2563EB;
+            --accent-light: #3B82F6;
+            --accent-soft: #DBEAFE;
+            --text-primary: #1E293B;
+            --text-secondary: #475569;
+            --text-muted: #64748B;
+            --surface: rgba(255, 255, 255, 0.85);
+            --surface-light: rgba(248, 250, 252, 0.9);
+            --border: rgba(148, 163, 184, 0.3);
+            --shadow: rgba(15, 23, 42, 0.08);
+            --shadow-soft: rgba(15, 23, 42, 0.04);
+            --gradient-bg: linear-gradient(135deg, #F1F5F9 0%, #E2E8F0 50%, #CBD5E1 100%);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--gradient-bg);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+            z-index: 1000;
+            transition: width 0.2s ease;
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Layout Grid */
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr minmax(800px, 1200px) 1fr;
+            grid-template-areas: 
+                ". header ."
+                ". content .";
+            gap: 3rem;
+            min-height: 100vh;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            grid-area: header;
+            text-align: center;
+            padding: 5rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .title-container h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .opening-quote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 3rem;
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 40px var(--shadow);
+            position: relative;
+        }
+
+        .opening-quote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--accent-soft);
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Main Content */
+        .content {
+            grid-area: content;
+            padding-bottom: 5rem;
+        }
+
+        .section {
+            margin-bottom: 5rem;
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            padding: 3rem;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px var(--shadow-soft);
+            /* Ensure sections are always visible */
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section:hover {
+            background: var(--surface-light);
+            border-color: var(--accent-soft);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px var(--shadow);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--accent-soft);
+        }
+
+        .section-number {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .sutra {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--accent);
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--accent-soft);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            position: relative;
+        }
+
+        .sutra::before {
+            content: "✦";
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--accent);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .section-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .section-content ul, .section-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .section-content li {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .section-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Special Blocks */
+        .checklist {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(34, 197, 94, 0.04) 100%);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .checklist::before {
+            content: "✓";
+            position: absolute;
+            top: -12px;
+            left: 2rem;
+            background: #22C55E;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .checklist h4 {
+            color: #16A34A;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .anti-pattern {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(239, 68, 68, 0.04) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .anti-pattern::before {
+            content: "⚠️ Anti-pattern: ";
+            color: #DC2626;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .organizational-pattern {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(245, 158, 11, 0.04) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .organizational-pattern::before {
+            content: "🏛️ Organizational Anti-pattern: ";
+            color: #D97706;
+            font-weight: 600;
+        }
+
+        .practical-pattern {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, rgba(168, 85, 247, 0.04) 100%);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .practical-pattern::before {
+            content: "💡 Practical Pattern: ";
+            color: #7C3AED;
+            font-weight: 600;
+        }
+
+        .threshold-patterns {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.08) 0%, rgba(236, 72, 153, 0.04) 100%);
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .threshold-patterns::before {
+            content: "⚙️ Threshold Patterns: ";
+            color: #DB2777;
+            font-weight: 600;
+        }
+
+        .incident-playbook {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(14, 165, 233, 0.04) 100%);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .incident-playbook::before {
+            content: "📋 Incident Playbook: ";
+            color: #0284C7;
+            font-weight: 600;
+        }
+
+        .code-block {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            color: #10B981;
+            overflow-x: auto;
+            box-shadow: 0 8px 32px rgba(15, 23, 42, 0.2);
+        }
+
+        .final-quote {
+            background: linear-gradient(135deg, var(--surface) 0%, var(--surface-light) 100%);
+            border: 2px solid var(--accent-soft);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            text-align: center;
+            line-height: 1.6;
+            box-shadow: 0 12px 48px var(--shadow);
+            position: relative;
+        }
+
+        .final-quote::before {
+            content: '"';
+            font-size: 5rem;
+            color: var(--accent-soft);
+            position: absolute;
+            top: -1rem;
+            left: 2rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Responsive */
+        @media (max-width: 1400px) {
+            .layout {
+                grid-template-columns: 1fr minmax(700px, 1000px) 1fr;
+                gap: 2rem;
+                padding: 0 1.5rem;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .layout {
+                grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "header"
+                    "content";
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title-container h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section {
+                padding: 2rem;
+                margin-bottom: 3rem;
+            }
+            
+            .layout {
+                padding: 0 0.75rem;
+            }
+
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+
+        /* Animation classes - but don't hide content by default */
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        .fade-in.animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .fade-in.animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        /* Removed sidebar specific styles */
+
+        /* Improved scroll behavior */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 2rem;
+        }
+
+        /* Focus states for accessibility */
+        .toc-link:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="layout">
+        <header>
+            <div class="title-container">
+                <h1>System Nīti</h1>
+                <div class="subtitle">Chanakya's Manual for Designing Resilient Systems</div>
+                <div class="opening-quote">
+                    Before you start some work, always ask three questions — Why am I doing it, What the results might be, and Will I be successful? — Chanakya
+                </div>
+            </div>
+        </header>
+
+        <main class="content">
+            <!-- Introduction -->
+            <section id="intro" class="section fade-in">
+                <div class="section-content">
+                    <p>You who would be ruler of systems, listen first to the politics of life. In courts, a whisper kills kingdoms; in markets, a slow leak bankrupts treasuries. The state that forgets its walls falls; the software that forgets its contracts collapses. Systems are small republics — they have ministers (processes), spies (telemetry), treasuries (resources), borders (APIs), traitors (bugs) and heirs (maintenance teams). Design your system as a wise king designs a realm: with foresight, with ruthless priorities, and with the humility to expect betrayal.</p>
+
+                    <p>If you read no further than this opening, remember this like a campaign order: <strong>build so that your system survives the crisis you cannot imagine</strong>. For those who survive past these opening salvos, I will now strip ceremony and hand you the doctrine, the field-manual, the step-by-step war-plan for constructing systems that endure.</p>
+                </div>
+            </section>
+
+            <!-- Part I -->
+            <section id="part1" class="section fade-in">
+                <div class="section-header">
+                    <div class="section-number">I</div>
+                    <h2>The Counsel: Start With Purpose, Not Features</h2>
+                </div>
+                <div class="sutra">Sutra: A throne without cause is empty — a system without clear intent is fragile.</div>
+                <div class="section-content">
+                    <p><strong>1. Three Questions (Chanakya's first litmus):</strong></p>
+                    <ul>
+                        <li><strong>Why are we building this?</strong> (Business need, user need, metric to change)</li>
+                        <li><strong>What will success look like?</strong> (SLOs, throughput, latency, adoption targets)</li>
+                        <li><strong>What is the failure mode we must survive?</strong> (Data loss, extended downtime, security breach)</li>
+                    </ul>
+
+                    <p><strong>2. Write down the non-negotiables.</strong> Not "nice-to-haves." Not "maybe-laters." The list that follows these three questions becomes your acceptance criteria and boundary for trade-offs.</p>
+
+                    <p><strong>3. Quantify everything.</strong> "Fast" becomes p95 < 100ms; "reliable" becomes availability 99.95%; "cheap" becomes $X per 1M requests. Numbers make politics into engineering.</p>
+
+                    <div class="checklist">
+                        <h4>Checklist (Requirements Sprint):</h4>
+                        <ul>
+                            <li>Business intent documented (one paragraph)</li>
+                            <li>Primary users & flows mapped</li>
+                            <li>Success metrics (SLOs) defined with error budget</li>
+                            <li>Critical failure modes enumerated and prioritized</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part II -->
+            <section id="part2" class="section fade-in">
+                <div class="section-header">
+                    <div class="section-number">II</div>
+                    <h2>The Foundation: Architecture as a Defensive Plan</h2>
+                </div>
+                <div class="sutra">Sutra: Build the fort before you invite the market.</div>
+                <div class="section-content">
+                    <p>Architecture is not aesthetic. It is survival planning. Your architecture must answer: how will the system behave under normal load, under burst, under network partitions, under disk corruption, under long-term neglect?</p>
+
+                    <p><strong>1. Start with a layered model</strong></p>
+                    <ul>
+                        <li><strong>Control plane:</strong> orchestration, config, leader election</li>
+                        <li><strong>Data plane:</strong> actual request handling, storage</li>
+                        <li><strong>Infrastructure plane:</strong> networking, infra-as-code, ci/cd</li>
+                        <li><strong>Observation plane:</strong> metrics, logs, traces, alerts</li>
+                    </ul>
+                    <p>Separate concerns so that failures in one plane minimally affect others.</p>
+
+                    <p><strong>2. Choose your data model early</strong></p>
+                    <p>OLTP (ACID DB) vs OLAP (column store) vs event log (append-only). Map each domain entity to the most appropriate store. Do not generalize one DB for everything just because it's convenient.</p>
+
+                    <p><strong>3. Domain-driven decomposition</strong></p>
+                    <p>Design boundaries by business domain; avoid breaking on implementation details. For each service: define its contract (API), data ownership (who is the source of truth), and expected load profile.</p>
+
+                    <div class="anti-pattern">
+                        Splintering into microservices because microservices are trendy. Microservices should serve ownership and scaling; otherwise they are bureaucracy.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part III -->
+            <section id="part3" class="section fade-in">
+                <div class="section-header">
+                    <div class="section-number">III</div>
+                    <h2>The Treasury: Resource Management & Cost Discipline</h2>
+                </div>
+                <div class="sutra">Sutra: Extravagance is the first ruin of kings.</div>
+                <div class="section-content">
+                    <p>Resources are your treasury: CPU, memory, I/O, network, and cloud dollars. Treat them as finite and precious.</p>
+
+                    <p><strong>1. Capacity planning</strong></p>
+                    <p>Estimate QPS, request size, processing time, database ops per request. Convert to CPU/memory/io needs; include headroom (safety margin, typically 2–3x for initial planning).</p>
+
+                    <p><strong>2. Cost as a first-class constraint</strong></p>
+                    <p>Design caching, batching, and asynchronous patterns to reduce resource spend. Use cost-aware autoscaling; don't autoscale statelessly without bounds.</p>
+
+                    <p><strong>3. Throttling and quotas</strong></p>
+                    <p>Rate limit at edge (API gateway) and per-tenant. Provide graceful responses (429 + Retry-After) and well-documented quotas.</p>
+
+                    <div class="checklist">
+                        <h4>Checklist (Resource Discipline):</h4>
+                        <ul>
+                            <li>Load model & cost projection documented</li>
+                            <li>Rate limits and quotas defined</li>
+                            <li>Autoscaling policy and bounds configured</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part IV -->
+            <section id="part4" class="section fade-in">
+                <div class="section-header">
+                    <div class="section-number">IV</div>
+                    <h2>The Spies: Observability and Intelligence</h2>
+                </div>
+                <div class="sutra">Sutra: Spies are the eyes of the king; telemetry is the mind of the system.</div>
+                <div class="section-content">
+                    <p>A blind ruler reacts slowly. Observability gives you early warning and the ability to reason after incidents.</p>
+
+                    <p><strong>1. Instrument everything from day one</strong></p>
+                    <ul>
+                        <li><strong>Metrics</strong> (counters, gauges, histograms). Focus on p50, p95, p99 latencies.</li>
+                        <li><strong>Structured logs</strong> with trace and request identifiers.</li>
+                        <li><strong>Distributed tracing</strong> to connect flows across services.</li>
+                    </ul>
+
+                    <p><strong>2. Design meaningful dashboards and alerts</strong></p>
+                    <p>Dashboards for business KPIs, system health (latency, errors, saturation), and infra. Alerts tuned to actionability; paging only when human intervention is needed. Use alert severity and runbooks.</p>
+
+                    <p><strong>3. Use SLOs & error budgets to govern change</strong></p>
+                    <p>Create SLOs: latency & availability targets per service. Use error budget consumption as a governance mechanism for releases and experiments.</p>
+
+                    <div class="code-block">
+Example: SLO = 99.95% successful requests per minute; error budget = 4.38 minutes/month.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part V -->
+            <section id="part5" class="section fade-in">
+                <div class="section-header">
+                    <div class="section-number">V</div>
+                    <h2>The Ministers: Ownership, Teams & Governance</h2>
+                </div>
+                <div class="sutra">Sutra: A throne without loyal ministers is bare; a system without ownership rots.</div>
+                <div class="section-content">
+                    <p>Design for teams as much as you design for code.</p>
+
+                    <p><strong>1. Team boundaries mirror service boundaries</strong></p>
+                    <p>Small, cross-functional teams own services end-to-end: code, infra, runbooks, SLOs.</p>
+
+                    <p><strong>2. Clear on-call responsibilities</strong></p>
+                    <p>No black boxes. On-call must know how to run, debug, and rollback.</p>
+
+                    <p><strong>3. Code review and architecture review</strong></p>
+                    <p>Change control with lightweight guardrails: design docs for non-trivial changes, sanity tests, and staged rollout.</p>
+
+                    <div class="organizational-pattern">
+                        Central platforms that solve everything and then block teams. Platform should empower, not enslave.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part VI -->
+            <section id="part6" class="section fade-in">
+                <div class="section-header">
+                    <div class="section-number">VI</div>
+                    <h2>The Borders: API Design and Contracts</h2>
+                </div>
+                <div class="sutra">Sutra: Promises bind the weak; contracts bind the strong.</div>
+                <div class="section-content">
+                    <p>APIs are borders between polities. Make them stable, versioned, and backward-compatible.</p>
+
+                    <p><strong>1. Contract-first API design</strong></p>
+                    <p>Define API schemas (OpenAPI/Protobuf) and generate client/server stubs. Mock the API and integrate early.</p>
+
+                    <p><strong>2. Versioning and evolution</strong></p>
+                    <p>Use additive changes; deprecate before removal. Prefer feature flags and negotiation over hard-breaking upgrades.</p>
+
+                    <p><strong>3. Defensive design</strong></p>
+                    <p>Timeouts, retries with exponential backoff and jitter, idempotency tokens for safe retries.</p>
+
+                    <div class="practical-pattern">
+                        For idempotent writes use idempotency keys; for non-idempotent, require server-side deduplication.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part VII -->
+            <section id="part7" class="section fade-in">
+                <div class="section-header">
+                    <div class="section-number">VII</div>
+                    <h2>The Army: Scaling & Data Sharding</h2>
+                </div>
+                <div class="sutra">Sutra: Armies that cannot coordinate lose battles; data that cannot be partitioned chokes systems.</div>
+                <div class="section-content">
+                    <p><strong>1. Horizontal scaling first</strong></p>
+                    <p>Design services to be stateless where possible; stateful components require partitioning.</p>
+
+                    <p><strong>2. Sharding strategies</strong></p>
+                    <ul>
+                        <li><strong>Range-based sharding</strong> (ordered keys): efficient for range queries, requires rebalancing.</li>
+                        <li><strong>Hash-based sharding</strong>: uniform distribution, harder to do range queries.</li>
+                        <li><strong>Hybrid</strong>: hash by customer, range by time, etc.</li>
+                    </ul>
+
+                    <p><strong>3. Rebalancing & consistent hashing</strong></p>
+                    <p>Use consistent hashing or virtual nodes for smoother shard movement. Plan for resharding operations and maintenance windows.</p>
+
+                    <div class="code-block">
+Example: For a multi-tenant billing system, shard by tenant-id (hash), and within tenant use range-partitioned tables for time-series invoice data.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part VIII -->
+            <section id="part8" class="section fade-in">
+                <div class="section-header">
+                    <div class="section-number">VIII</div>
+                    <h2>The Bargain: Caching & Consistency</h2>
+                </div>
+                <div class="sutra">Sutra: Trade-offs are the currency of rulers.</div>
+                <div class="section-content">
+                    <p>Caching is powerful but makes correctness harder. Consistency models are a contract you choose.</p>
+
+                    <p><strong>1. Caching patterns</strong></p>
+                    <ul>
+                        <li><strong>Read-through cache</strong>: Cache sits in front of DB, fetch on cache-miss.</li>
+                        <li><strong>Write-through / write-behind</strong>: Synchronous vs asynchronous update patterns.</li>
+                    </ul>
+                    <p>Cache invalidation is the hardest problem in distributed systems. Favor simple, conservative strategies: TTLs, explicit invalidation on write.</p>
+
+                    <p><strong>2. Consistency choices</strong></p>
+                    <ul>
+                        <li><strong>Strong consistency</strong> (linearizability) when correctness matters (banking).</li>
+                        <li><strong>Eventual consistency</strong> where availability and latency matter (social feed).</li>
+                        <li>Use <strong>causal or session consistency</strong> when user-experience requires ordering guarantees.</li>
+                    </ul>
+
+                    <p><strong>3. Transactions & Idempotency</strong></p>
+                    <p>Use distributed transactions sparingly. Prefer saga patterns for cross-service workflows: orchestrator or choreography with event compensation.</p>
+
+                    <div class="code-block">
+Practical Example: Payment processing—require strong consistency. Use two-phase commit only if unavoidable; prefer single-service transaction and event-driven updates for downstream processing.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part IX -->
+            <section id="part9" class="section fade-in">
+                <div class="section-header">
+                    <div class="section-number">IX</div>
+                    <h2>The Siege: Faults, Circuit Breakers and Backpressure</h2>
+                </div>
+                <div class="sutra">Sutra: When the enemy battering-ram approaches, do not flood the gate with defenders; funnel and control the flow.</div>
+                <div class="section-content">
+                    <p><strong>1. Expect failures — design for them</strong></p>
+                    <ul>
+                        <li>Implement circuit breakers to avoid cascading failures.</li>
+                        <li>Use bulkheads to isolate failure domains.</li>
+                        <li>Apply backpressure at ingress: reject, queue, or shed load.</li>
+                    </ul>
+
+                    <p><strong>2. Retry and idempotency</strong></p>
+                    <ul>
+                        <li>Retry with exponential backoff and jitter.</li>
+                        <li>Ensure operations are idempotent when retried; if not, employ deduplication.</li>
+                    </ul>
+
+                    <p><strong>3. Graceful degradation</strong></p>
+                    <p>Serve reduced functionality instead of full failure: degrade recommendation features under load, keep payments working.</p>
+
+                    <div class="threshold-patterns">
+                        <ul>
+                            <li>Circuit breaker trips if error rate > X% and number of requests > Y in window Z.</li>
+                            <li>Retry up to N times with backoff base B and jitter J.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part X -->
+            <section id="part10" class="section fade-in">
+                <div class="section-header">
+                    <div class="section-number">X</div>
+                    <h2>The Archivist: Data Retention, Backups & Recovery</h2>
+                </div>
+                <div class="sutra">Sutra: A king without records forgets his lineage; a system without backups forgets its state.</div>
+                <div class="section-content">
+                    <p><strong>1. Backup strategy</strong></p>
+                    <ul>
+                        <li>RPO & RTO determine backup cadence.</li>
+                        <li>For databases: point-in-time recovery, incremental backups, tested restores.</li>
+                        <li>For object storage: replication across regions + lifecycle policies.</li>
+                    </ul>
+
+                    <p><strong>2. Test restores regularly</strong></p>
+                    <p>Restore process must be part of CI/CD; test in isolated infra.</p>
+
+                    <p><strong>3. Migration and schema evolution</strong></p>
+                    <p>Use backward-compatible schema changes (add columns optional, create new tables). Online migration strategies: dual-write + backfill, blue-green DB migrations.</p>
+                </div>
+            </section>
+
+            <!-- Part XI -->
+            <section id="part11" class="section fade-in">
+                <div class="section-header">
+                    <div class="section-number">XI</div>
+                    <h2>The Law: Security & Least Privilege</h2>
+                </div>
+                <div class="sutra">Sutra: An open gate invites invasion; secrecy and limits protect the realm.</div>
+                <div class="section-content">
+                    <p><strong>1. Principle of least privilege</strong></p>
+                    <p>IAM roles per service with minimal permissions. Short-lived credentials and mutual TLS for service-to-service auth.</p>
+
+                    <p><strong>2. Threat modeling</strong></p>
+                    <p>Threat model early. Build the list of assets, threats and mitigations. Automate security controls: dependency scanning, secret scanning, SAST/DAST pipelines.</p>
+
+                    <p><strong>3. Data protection</strong></p>
+                    <p>Encrypt at rest and in transit. Mask PII and enforce access policies; audit all access.</p>
+
+                    <div class="incident-playbook">
+                        Maintain and rehearse an incident response plan and a public communication template.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part XII -->
+            <section id="part12" class="section fade-in">
+                <div class="section-header">
+                    <div class="section-number">XII</div>
+                    <h2>The Market: Deployment Strategy & CI/CD</h2>
+                </div>
+                <div class="sutra">Sutra: A wise king does not burn the city with each celebration.</div>
+                <div class="section-content">
+                    <p><strong>1. Deployment patterns</strong></p>
+                    <ul>
+                        <li><strong>Canary releases</strong>: route small % of traffic to new version; monitor errors and latency.</li>
+                        <li><strong>Blue-green</strong>: instant rollback by switching routing.</li>
+                        <li><strong>Feature flags</strong>: decouple deploy from release.</li>
+                    </ul>
+
+                    <p><strong>2. Automation and reproducibility</strong></p>
+                    <ul>
+                        <li>Infrastructure as code.</li>
+                        <li>Immutable images/containers.</li>
+                        <li>Declarative manifests and scripted rollbacks.</li>
+                    </ul>
+
+                    <p><strong>3. Release governance</strong></p>
+                    <p>Gate releases by SLO health, smoke tests, and canary stability. Automate post-deploy verification.</p>
+                </div>
+            </section>
+
+            <!-- Part XIII -->
+            <section id="part13" class="section fade-in">
+                <div class="section-header">
+                    <div class="section-number">XIII</div>
+                    <h2>The Trial by Fire: Chaos & Resilience Testing</h2>
+                </div>
+                <div class="sutra">Sutra: As soon as the fear approaches near, attack and destroy it.</div>
+                <div class="section-content">
+                    <p>Chaos engineering is you bringing fear close, so you learn to destroy it on your terms.</p>
+
+                    <p><strong>1. Start small</strong></p>
+                    <p>Fault-injection on non-critical paths. Inject latency, drop packets, kill instances.</p>
+
+                    <p><strong>2. Runbook-driven experiments</strong></p>
+                    <p>Predefine hypothesis, metrics, blast radius, and rollback plan. Use chaos results to improve runbooks, timeouts, and redundancy.</p>
+                </div>
+            </section>
+
+            <!-- Part XIV -->
+            <section id="part14" class="section fade-in">
+                <div class="section-header">
+                    <div class="section-number">XIV</div>
+                    <h2>The Heirs: Documentation & Succession</h2>
+                </div>
+                <div class="sutra">Sutra: If knowledge dies with the king, the realm enters anarchy.</div>
+                <div class="section-content">
+                    <p><strong>1. Living docs</strong></p>
+                    <p>System overviews, data flows, API contracts — single source of truth (e.g., an internal docs portal). Runbooks for incidents & postmortems.</p>
+
+                    <p><strong>2. Onboarding as part of code quality</strong></p>
+                    <p>New engineer should be able to ship a small safe change in 1–2 weeks. If not, system is too complex.</p>
+                </div>
+            </section>
+
+            <!-- Part XV -->
+            <section id="part15" class="section fade-in">
+                <div class="section-header">
+                    <div class="section-number">XV</div>
+                    <h2>The Last Counsel: Governance, Cost & Ethics</h2>
+                </div>
+                <div class="sutra">Sutra: Not knowledge alone, nor force alone; with both the king endures.</div>
+                <div class="section-content">
+                    <p><strong>Governance</strong>: balance autonomy with platform conventions. Enforce standards without becoming a blockade.</p>
+
+                    <p><strong>Cost</strong>: billability attribution by service; teams own cost and optimization.</p>
+
+                    <p><strong>Ethics</strong>: guard user data. Trade-offs for speed must be informed with privacy in mind.</p>
+                </div>
+            </section>
+
+            <!-- Campaign Orders -->
+            <section id="runbook" class="section fade-in">
+                <div class="section-header">
+                    <div class="section-number">📋</div>
+                    <h2>Closing Campaign Orders — A Practical Runbook</h2>
+                </div>
+                <div class="section-content">
+                    <ol>
+                        <li><strong>Define success</strong> — pick 3 metrics (latency p95, availability %, cost per million).</li>
+                        <li><strong>Draw boundaries</strong> — one page diagram of services & data ownership.</li>
+                        <li><strong>Choose stores</strong> — map each data domain to DB type and partition key.</li>
+                        <li><strong>Instrument</strong> — wire metrics, traces, logs, and a dashboard.</li>
+                        <li><strong>Set SLOs</strong> — error budget & release policy.</li>
+                        <li><strong>Automate deployment</strong> — CI/CD, canaries, feature flags.</li>
+                        <li><strong>Practice failure</strong> — scheduled chaos, restore drills, postmortems.</li>
+                        <li><strong>Document</strong> — publish runbooks and onboarding paths.</li>
+                        <li><strong>Govern</strong> — retrospective on cost & risk every quarter.</li>
+                        <li><strong>Repeat</strong> — architecture evolves; revisit the three questions every sprint.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Final Thoughts -->
+            <section id="final" class="section fade-in">
+                <div class="section-content">
+                    <div class="final-quote">
+                        Build with the humility of the defeated and the strategy of the conqueror. A great system is not one that dazzles at launch — it is the one that stands silent through ten winters of traffic, betrayal, and greed. Design not for glory, but for surviving the day the unknown arrives.
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Progress bar
+        function updateProgressBar() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update progress bar on scroll
+            window.addEventListener('scroll', updateProgressBar);
+            updateProgressBar();
+
+            // Ensure all sections are visible immediately
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
