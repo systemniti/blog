@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en" data-theme="paper">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Archive — System Nīti</title>
+  <meta name="description" content="The full archive of essays in System Nīti — the fifteen sutras and the decree.">
+  <link rel="canonical" href="https://veers.me/archive.html">
+  <link rel="alternate" type="application/rss+xml" title="System Nīti" href="rss.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <canvas class="grain" id="grain" aria-hidden="true"></canvas>
+
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <div class="cursor-label" id="cursorLabel"></div>
+  </div>
+
+  <header class="post-nav" id="postNav">
+    <a href="index.html" class="post-nav-back">
+      <span class="post-nav-back-arrow">←</span>
+      <span>Doctrine</span>
+    </a>
+    <div class="post-nav-title">Archive</div>
+    <div class="post-nav-meta">
+      <span>16 entries</span>
+    </div>
+    <div class="post-nav-progress"><div class="post-nav-progress-bar"></div></div>
+  </header>
+
+  <section class="archive-hero" data-section="archive-hero">
+    <div class="archive-hero-grid">
+      <div>
+        <div class="archive-eyebrow">The Archive · MMXXVI</div>
+      </div>
+      <div>
+        <h1 class="archive-title" data-reveal-split>Sixteen <em>essays</em>, one doctrine.</h1>
+        <p class="archive-lede" data-reveal>The fifteen sutras, in their long form, and the decree that ties them together. New essays are published on a quarterly cadence — subscribe via <a href="rss.xml" style="color:var(--vermillion);text-decoration:none;border-bottom:1px solid currentColor;">RSS</a> to be notified when the next is published.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="archive-body">
+    <div class="archive-list">
+
+      <a class="archive-row" href="posts/01-the-throne.html">
+        <span class="archive-row-num">01</span>
+        <span class="archive-row-title">A throne without cause is <em>empty</em>.</span>
+        <span class="archive-row-deva">राजा हीनः कारणेन रिक्तः</span>
+        <span class="archive-row-meta">
+          <span>Requirements</span>
+          <span>~6,000 words</span>
+        </span>
+        <span class="archive-row-arrow">↗</span>
+      </a>
+
+      <a class="archive-row" href="posts/02-the-fort.html">
+        <span class="archive-row-num">02</span>
+        <span class="archive-row-title">Build the <em>fort</em> before you invite the market.</span>
+        <span class="archive-row-deva">दुर्गं पुरा निर्माय</span>
+        <span class="archive-row-meta">
+          <span>Architecture</span>
+          <span>~6,000 words</span>
+        </span>
+        <span class="archive-row-arrow">↗</span>
+      </a>
+
+      <a class="archive-row" href="posts/03-the-treasury.html">
+        <span class="archive-row-num">03</span>
+        <span class="archive-row-title">Extravagance is the first <em>ruin</em> of kings.</span>
+        <span class="archive-row-deva">अतिव्ययः राज्ञां प्रथमं विनाशः</span>
+        <span class="archive-row-meta">
+          <span>Resources</span>
+          <span>~6,000 words</span>
+        </span>
+        <span class="archive-row-arrow">↗</span>
+      </a>
+
+      <a class="archive-row" href="posts/04-the-spies.html">
+        <span class="archive-row-num">04</span>
+        <span class="archive-row-title">Spies are the <em>eyes</em> of the king.</span>
+        <span class="archive-row-deva">चक्षूंषि राज्ञः गूढचराः</span>
+        <span class="archive-row-meta">
+          <span>Observability</span>
+          <span>~6,000 words</span>
+        </span>
+        <span class="archive-row-arrow">↗</span>
+      </a>
+
+      <a class="archive-row" href="posts/05-the-ministers.html">
+        <span class="archive-row-num">05</span>
+        <span class="archive-row-title">A throne without <em>loyal ministers</em> is bare.</span>
+        <span class="archive-row-deva">मन्त्रिहीनं सिंहासनं नग्नम्</span>
+        <span class="archive-row-meta">
+          <span>Ownership</span>
+          <span>~6,000 words</span>
+        </span>
+        <span class="archive-row-arrow">↗</span>
+      </a>
+
+      <a class="archive-row" href="posts/06-the-borders.html">
+        <span class="archive-row-num">06</span>
+        <span class="archive-row-title">Promises bind the weak; <em>contracts</em> bind the strong.</span>
+        <span class="archive-row-deva">प्रतिज्ञा दुर्बलानां बन्धनम्</span>
+        <span class="archive-row-meta">
+          <span>APIs</span>
+          <span>~6,000 words</span>
+        </span>
+        <span class="archive-row-arrow">↗</span>
+      </a>
+
+      <a class="archive-row" href="posts/07-the-armies.html">
+        <span class="archive-row-num">07</span>
+        <span class="archive-row-title">Armies that cannot <em>coordinate</em> lose battles.</span>
+        <span class="archive-row-deva">असेनाः सेनाः पराजयन्ति</span>
+        <span class="archive-row-meta">
+          <span>Scaling</span>
+          <span>~6,000 words</span>
+        </span>
+        <span class="archive-row-arrow">↗</span>
+      </a>
+
+      <a class="archive-row" href="posts/08-the-trade.html">
+        <span class="archive-row-num">08</span>
+        <span class="archive-row-title"><em>Trade-offs</em> are the currency of rulers.</span>
+        <span class="archive-row-deva">राज्ञां मुद्रा विनिमयः</span>
+        <span class="archive-row-meta">
+          <span>Caching</span>
+          <span>~6,000 words</span>
+        </span>
+        <span class="archive-row-arrow">↗</span>
+      </a>
+
+      <a class="archive-row" href="posts/09-the-gate.html">
+        <span class="archive-row-num">09</span>
+        <span class="archive-row-title">When the <em>battering-ram</em> approaches…</span>
+        <span class="archive-row-deva">आगतं भेरीं न प्रवेशयेत्</span>
+        <span class="archive-row-meta">
+          <span>Resilience</span>
+          <span>~6,000 words</span>
+        </span>
+        <span class="archive-row-arrow">↗</span>
+      </a>
+
+      <a class="archive-row" href="posts/10-the-records.html">
+        <span class="archive-row-num">10</span>
+        <span class="archive-row-title">A king without <em>records</em> forgets his lineage.</span>
+        <span class="archive-row-deva">अस्मृती राज्ञः कुलं नष्टम्</span>
+        <span class="archive-row-meta">
+          <span>Backups</span>
+          <span>~6,000 words</span>
+        </span>
+        <span class="archive-row-arrow">↗</span>
+      </a>
+
+      <a class="archive-row" href="posts/11-the-watch.html">
+        <span class="archive-row-num">11</span>
+        <span class="archive-row-title">An open gate invites <em>invasion</em>.</span>
+        <span class="archive-row-deva">उद्घाटितं द्वारं आक्रमणस्य आमन्त्रणम्</span>
+        <span class="archive-row-meta">
+          <span>Security</span>
+          <span>~6,000 words</span>
+        </span>
+        <span class="archive-row-arrow">↗</span>
+      </a>
+
+      <a class="archive-row" href="posts/12-the-coronation.html">
+        <span class="archive-row-num">12</span>
+        <span class="archive-row-title">A wise king does not <em>burn the city</em> with each celebration.</span>
+        <span class="archive-row-deva">प्रत्युत्सवं नगरं न दहेत्</span>
+        <span class="archive-row-meta">
+          <span>Deployment</span>
+          <span>~6,000 words</span>
+        </span>
+        <span class="archive-row-arrow">↗</span>
+      </a>
+
+      <a class="archive-row" href="posts/13-the-trial.html">
+        <span class="archive-row-num">13</span>
+        <span class="archive-row-title">As soon as the <em>fear</em> approaches, attack and destroy it.</span>
+        <span class="archive-row-deva">भयमुपस्थितं हन्यात्</span>
+        <span class="archive-row-meta">
+          <span>Chaos</span>
+          <span>~6,000 words</span>
+        </span>
+        <span class="archive-row-arrow">↗</span>
+      </a>
+
+      <a class="archive-row" href="posts/14-the-library.html">
+        <span class="archive-row-num">14</span>
+        <span class="archive-row-title">If knowledge dies with the king, the realm enters <em>anarchy</em>.</span>
+        <span class="archive-row-deva">ज्ञानं राज्ञि मृते अराजकम्</span>
+        <span class="archive-row-meta">
+          <span>Docs</span>
+          <span>~6,000 words</span>
+        </span>
+        <span class="archive-row-arrow">↗</span>
+      </a>
+
+      <a class="archive-row" href="posts/15-the-council.html">
+        <span class="archive-row-num">15</span>
+        <span class="archive-row-title">Not <em>knowledge alone</em>, nor force alone.</span>
+        <span class="archive-row-deva">न ज्ञानमात्रं, न बलमात्रं</span>
+        <span class="archive-row-meta">
+          <span>Governance</span>
+          <span>~6,000 words</span>
+        </span>
+        <span class="archive-row-arrow">↗</span>
+      </a>
+
+      <a class="archive-row" href="posts/decree.html">
+        <span class="archive-row-num">16</span>
+        <span class="archive-row-title">Ten steps to a <em>resilient realm</em>.</span>
+        <span class="archive-row-deva">आज्ञा दश दशकृत्वः</span>
+        <span class="archive-row-meta">
+          <span>The Decree</span>
+          <span>10 steps · 1 cadence</span>
+        </span>
+        <span class="archive-row-arrow">↗</span>
+      </a>
+
+    </div>
+  </section>
+
+  <footer class="footer" id="colophon">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-mark">नीति</div>
+        <p class="footer-pitch">A field manual for designing <em>resilient systems</em> — restated from Chanakya for those who rule small republics of services.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-label">Doctrine</div>
+          <a href="index.html#preface">Preface</a>
+          <a href="index.html#chapters">The Fifteen Sutras</a>
+          <a href="index.html#decree">The Decree</a>
+          <a href="archive.html">All Essays</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Colophon</div>
+          <span>Set in Fraunces &amp; Inter</span>
+          <span>Composed in HTML / CSS / JS</span>
+          <span>No frameworks, no build</span>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Coordinates</div>
+          <a href="https://veers.me">veers.me</a>
+          <span id="footerTime">— : — : —</span>
+          <span>MMXXVI</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© MMXXVI &nbsp;·&nbsp; System Nīti</span>
+      <span class="footer-mantra">सत्यमेव जयते</span>
+      <span>v.1.1.0</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

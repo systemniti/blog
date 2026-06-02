@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en" data-theme="paper">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>The Ministers — A throne without loyal ministers is bare; a system without ownership rots. — System Nīti</title>
+  <meta name="description" content="A throne without loyal ministers is bare; a system without ownership rots. Design for teams as much as you design for code. The boundaries of the system should follow the boundaries of who is responsible for it.">
+  <meta name="author" content="Veer">
+  <meta property="og:title" content="The Ministers — System Nīti">
+  <meta property="og:description" content="A throne without loyal ministers is bare; a system without ownership rots.">
+  <meta property="og:type" content="article">
+  <link rel="canonical" href="https://veers.me/posts/05-the-ministers.html">
+  <link rel="alternate" type="application/rss+xml" title="System Nīti" href="../rss.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <canvas class="grain" id="grain" aria-hidden="true"></canvas>
+
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <div class="cursor-label" id="cursorLabel"></div>
+  </div>
+
+  <header class="post-nav" id="postNav">
+    <a href="../index.html" class="post-nav-back">
+      <span class="post-nav-back-arrow">←</span>
+      <span>Doctrine</span>
+    </a>
+    <div class="post-nav-title">The Ministers</div>
+    <div class="post-nav-meta">
+      <span data-reading-time>— min</span>
+    </div>
+    <div class="post-nav-progress"><div class="post-nav-progress-bar"></div></div>
+  </header>
+
+  <section class="post-hero" data-section="post-hero">
+    <div class="post-hero-grid">
+      <aside class="post-hero-side">
+        <div class="post-hero-eyebrow">
+          <span class="post-hero-eyebrow-num">05</span>
+          <span class="post-hero-eyebrow-cat">अध्याय · ०५</span>
+        </div>
+        <div class="post-hero-sutra">मन्त्रिहीनं सिंहासनं नग्नम्</div>
+        <div class="post-hero-byline">
+          <div class="post-hero-byline-row"><span>Author</span><b>Veer</b></div>
+          <div class="post-hero-byline-row"><span>Published</span><b>Forthcoming</b></div>
+          <div class="post-hero-byline-row"><span>Series</span><b>System Nīti</b></div>
+          <div class="post-hero-byline-row"><span>Reading</span><b data-reading-time>— min</b></div>
+        </div>
+      </aside>
+      <div class="post-hero-main">
+        <h1 class="post-hero-title" data-reveal-split>A throne without loyal ministers is bare; a system without ownership rots.</h1>
+        <p class="post-hero-lede" data-reveal>Design for teams as much as you design for code. The boundaries of the system should follow the boundaries of who is responsible for it.</p>
+
+        <div class="audio-player" data-cursor="play">
+          <button class="audio-play" aria-label="Listen to this essay">
+            <span class="audio-play-icon audio-play-icon-play"></span>
+          </button>
+          <div class="audio-info">
+            <span class="audio-info-label">Listen to this essay</span>
+            <span class="audio-info-sub">Audio will be available when the essay is published</span>
+          </div>
+          <div class="audio-waveform" aria-hidden="true"></div>
+          <span class="audio-time">— / —</span>
+          <button class="audio-rate" aria-label="Change playback speed">1.00×</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="post-body" data-section="post-body">
+    <div class="post-body-grid">
+      <aside class="post-toc">
+        <div class="post-toc-label"><span>Contents</span></div>
+        <ul class="post-toc-list"></ul>
+      </aside>
+
+      <article class="post-article">
+
+        <aside class="post-callout post-callout--principle">
+          <div class="post-callout-icon">P</div>
+          <div class="post-callout-body">
+            <div class="post-callout-label">Forthcoming</div>
+            <p>The full deep-dive for this sutra is forthcoming. Each of the fifteen sutras in System Nīti will receive a long-form essay (~6,000 words) of its own — case studies, anti-patterns, the working vocabulary, and the weekly and quarterly practices that keep the sutra alive in a working system.</p>
+            <p>For now, the sutra itself, on the doctrine page, is the canonical statement. This page will be the working notebook: how to <em>apply</em> the sutra in production, how to <em>measure</em> whether you are following it, and how to <em>recognize</em> when the kingdom has begun to drift.</p>
+          </div>
+        </aside>
+
+        <h2 id="preview">Preview of what is coming</h2>
+
+        <p>The essay will be organised around five movements, in the editorial tradition of these doctrines:</p>
+
+        <ul>
+          <li><strong>The sutra, restated at length</strong> — the principle, the corollaries, and the test that distinguishes a kingdom that follows it from a kingdom that merely cites it.</li>
+          <li><strong>Real-world collapses</strong> — three public or near-public case studies where the principle was ignored, with a precise anatomy of how the failure cascaded.</li>
+          <li><strong>Real-world victories</strong> — three cases where the principle was followed against pressure, and the system survived what would have ended a less principled kingdom.</li>
+          <li><strong>The anti-patterns</strong> — the common ways an organisation rationalises the abandonment of the principle, with a worked refutation of each rationalisation.</li>
+          <li><strong>The operating cadence</strong> — the weekly, monthly, quarterly, and annual practices that keep the principle alive in a system whose people will, eventually, change.</li>
+        </ul>
+
+        <p>Until the full essay is published, the shorter statement of the sutra on the <a href="../index.html#chapters">Doctrine page</a> is the canonical reference. Subscribe via the <a href="../rss.xml">RSS feed</a> to be notified when the deep-dive is published.</p>
+
+        <hr>
+
+        <aside class="post-aside">
+          <div class="post-aside-label">Cite this page</div>
+          Veer. (Forthcoming). <em>A throne without loyal ministers is bare; a system without ownership rots.</em> System Nīti. https://veers.me/posts/05-the-ministers.html
+        </aside>
+
+        <div class="post-colophon">
+          <div class="post-colophon-row"><span>Composed in</span><b>HTML / CSS / JS — no frameworks</b></div>
+          <div class="post-colophon-row"><span>Type</span><b>Fraunces · Inter · JetBrains Mono</b></div>
+          <div class="post-colophon-row"><span>Series</span><b>System Nīti · Ownership</b></div>
+          <div class="post-colophon-row"><span>Sutra</span><b>05 of 15 — The Ministers</b></div>
+        </div>
+      </article>
+    </div>
+
+    <nav class="post-pager">
+      <a class="post-pager-link post-pager-link--prev" href="04-the-spies.html">
+        <span class="post-pager-direction">← Previous Sutra</span>
+        <span class="post-pager-title">Spies are the eyes of the king.</span>
+      </a>
+      <a class="post-pager-link post-pager-link--next" href="06-the-borders.html">
+        <span class="post-pager-direction">Next Sutra →</span>
+        <span class="post-pager-title">Promises bind the weak; contracts bind the strong.</span>
+      </a>
+    </nav>
+
+    <section class="post-related">
+      <div class="post-related-label">Other essays in the doctrine</div>
+      <div class="post-related-grid">
+        <a class="post-related-card" href="02-the-fort.html">
+          <span class="post-related-num">02 · Architecture</span>
+          <span class="post-related-title">Build the fort before you invite the market.</span>
+          <span class="post-related-meta">The Fort · ~6,000 words</span>
+        </a>
+        <a class="post-related-card" href="15-the-council.html">
+          <span class="post-related-num">15 · Governance</span>
+          <span class="post-related-title">Not knowledge alone, nor force alone.</span>
+          <span class="post-related-meta">The Council · ~6,000 words</span>
+        </a>
+        <a class="post-related-card" href="14-the-library.html">
+          <span class="post-related-num">14 · Docs</span>
+          <span class="post-related-title">If knowledge dies with the king, the realm enters anarchy.</span>
+          <span class="post-related-meta">The Library · ~6,000 words</span>
+        </a>
+      </div>
+    </section>
+  </section>
+
+  <footer class="footer" id="colophon">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-mark">नीति</div>
+        <p class="footer-pitch">A field manual for designing <em>resilient systems</em> — restated from Chanakya for those who rule small republics of services.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-label">Doctrine</div>
+          <a href="../index.html#preface">Preface</a>
+          <a href="../index.html#chapters">The Fifteen Sutras</a>
+          <a href="../index.html#decree">The Decree</a>
+          <a href="../archive.html">All Essays</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Colophon</div>
+          <span>Set in Fraunces &amp; Inter</span>
+          <span>Composed in HTML / CSS / JS</span>
+          <span>No frameworks, no build</span>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Coordinates</div>
+          <a href="https://veers.me">veers.me</a>
+          <span id="footerTime">— : — : —</span>
+          <span>MMXXVI</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© MMXXVI &nbsp;·&nbsp; System Nīti</span>
+      <span class="footer-mantra">सत्यमेव जयते</span>
+      <span>v.1.1.0</span>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

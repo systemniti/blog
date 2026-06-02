@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>System Nīti — A Field Manual for Resilient Systems</title>
+    <link>https://veers.me/</link>
+    <description>Sixteen sutras and one decree, restated from Chanakya for engineers. A field manual for designing resilient systems — built for those who rule small republics of services.</description>
+    <language>en</language>
+    <copyright>© MMXXVI Veer</copyright>
+    <managingEditor>veers@veers.me (Veer)</managingEditor>
+    <atom:link href="https://veers.me/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://veers.me/assets/niti-mark.svg</url>
+      <title>System Nīti</title>
+      <link>https://veers.me/</link>
+    </image>
+
+    <item>
+      <title>Sutra 01 — The Throne: A system without clear intent is fragile</title>
+      <link>https://veers.me/posts/01-the-throne.html</link>
+      <guid isPermaLink="true">https://veers.me/posts/01-the-throne.html</guid>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+      <author>veers@veers.me (Veer)</author>
+      <category>Requirements</category>
+      <category>System Nīti</category>
+      <description>The first sutra — on the three questions every system must answer before a single line is written. Includes real-world case studies (Knight Capital, Healthcare.gov) and the operating cadence that keeps the throne defended.</description>
+      <content:encoded><![CDATA[
+        <p>The kingdom rises or falls in the moment the throne is set. Not in the year of coronation. Not in the decade of consolidation. In the <em>moment</em>.</p>
+        <p>Every system, before its first commit, must be able to answer three questions: <strong>Why are we building this?</strong> <strong>What does success look like?</strong> <strong>What is the failure mode we must survive?</strong></p>
+        <p>This essay is the full deep-dive on the first sutra — with the test, the cadence, and the case studies that show what happens when the throne is undefined.</p>
+        <p><a href="https://veers.me/posts/01-the-throne.html">Read the full essay →</a></p>
+      ]]></content:encoded>
+    </item>
+
+    <item>
+      <title>Sutra 02 — The Fort: Build the fort before you invite the market</title>
+      <link>https://veers.me/posts/02-the-fort.html</link>
+      <guid isPermaLink="true">https://veers.me/posts/02-the-fort.html</guid>
+      <pubDate>Forthcoming</pubDate>
+      <author>veers@veers.me (Veer)</author>
+      <category>Architecture</category>
+      <category>System Nīti</category>
+      <description>Architecture is not aesthetic. It is survival planning — a document of what you have already agreed to defend. Forthcoming — the long-form deep-dive on architectural boundaries, data models, and the discipline of a one-page diagram.</description>
+    </item>
+
+    <item>
+      <title>Sutra 03 — The Treasury: Extravagance is the first ruin of kings</title>
+      <link>https://veers.me/posts/03-the-treasury.html</link>
+      <guid isPermaLink="true">https://veers.me/posts/03-the-treasury.html</guid>
+      <pubDate>Forthcoming</pubDate>
+      <author>veers@veers.me (Veer)</author>
+      <category>Resources</category>
+      <category>System Nīti</category>
+      <description>Resources are your treasury — finite, precious, accountable. Forthcoming — capacity planning, cost as a first-class constraint, throttling and quotas.</description>
+    </item>
+
+    <item>
+      <title>Sutra 04 — The Spies: Spies are the eyes of the king</title>
+      <link>https://veers.me/posts/04-the-spies.html</link>
+      <guid isPermaLink="true">https://veers.me/posts/04-the-spies.html</guid>
+      <pubDate>Forthcoming</pubDate>
+      <author>veers@veers.me (Veer)</author>
+      <category>Observability</category>
+      <category>System Nīti</category>
+      <description>Telemetry is the mind of the system. Forthcoming — metrics, logs, traces, SLOs, error budgets, dashboards that earn their place.</description>
+    </item>
+
+    <item>
+      <title>Sutra 05 — The Ministers: A throne without loyal ministers is bare</title>
+      <link>https://veers.me/posts/05-the-ministers.html</link>
+      <guid isPermaLink="true">https://veers.me/posts/05-the-ministers.html</guid>
+      <pubDate>Forthcoming</pubDate>
+      <author>veers@veers.me (Veer)</author>
+      <category>Ownership</category>
+      <category>System Nīti</category>
+      <description>Design for teams as much as you design for code. Forthcoming — service ownership, on-call, code review, the org-chart / architecture-chart alignment.</description>
+    </item>
+
+    <item>
+      <title>Sutra 06 — The Borders: Promises bind the weak; contracts bind the strong</title>
+      <link>https://veers.me/posts/06-the-borders.html</link>
+      <guid isPermaLink="true">https://veers.me/posts/06-the-borders.html</guid>
+      <pubDate>Forthcoming</pubDate>
+      <author>veers@veers.me (Veer)</author>
+      <category>APIs</category>
+      <category>System Nīti</category>
+      <description>APIs are borders between polities. Forthcoming — contract-first design, versioning, defensive design, idempotency, the discipline of stable interfaces.</description>
+    </item>
+
+    <item>
+      <title>Sutra 07 — The Armies: Armies that cannot coordinate lose battles</title>
+      <link>https://veers.me/posts/07-the-armies.html</link>
+      <guid isPermaLink="true">https://veers.me/posts/07-the-armies.html</guid>
+      <pubDate>Forthcoming</pubDate>
+      <author>veers@veers.me (Veer)</author>
+      <category>Scaling</category>
+      <category>System Nīti</category>
+      <description>Horizontal scaling first. Stateless services where possible. Forthcoming — sharding strategies, consistent hashing, re-sharding, capacity planning at scale.</description>
+    </item>
+
+    <item>
+      <title>Sutra 08 — The Trade: Trade-offs are the currency of rulers</title>
+      <link>https://veers.me/posts/08-the-trade.html</link>
+      <guid isPermaLink="true">https://veers.me/posts/08-the-trade.html</guid>
+      <pubDate>Forthcoming</pubDate>
+      <author>veers@veers.me (Veer)</author>
+      <category>Caching</category>
+      <category>System Nīti</category>
+      <description>Caching is the art of buying speed with the coin of consistency. Forthcoming — cache patterns, invalidation, consistency models, the saga pattern.</description>
+    </item>
+
+    <item>
+      <title>Sutra 09 — The Gate: When the battering-ram approaches</title>
+      <link>https://veers.me/posts/09-the-gate.html</link>
+      <guid isPermaLink="true">https://veers.me/posts/09-the-gate.html</guid>
+      <pubDate>Forthcoming</pubDate>
+      <author>veers@veers.me (Veer)</author>
+      <category>Resilience</category>
+      <category>System Nīti</category>
+      <description>Expect failures — design for them. Forthcoming — circuit breakers, bulkheads, backpressure, retries with jitter, graceful degradation.</description>
+    </item>
+
+    <item>
+      <title>Sutra 10 — The Records: A king without records forgets his lineage</title>
+      <link>https://veers.me/posts/10-the-records.html</link>
+      <guid isPermaLink="true">https://veers.me/posts/10-the-records.html</guid>
+      <pubDate>Forthcoming</pubDate>
+      <author>veers@veers.me (Veer)</author>
+      <category>Backups</category>
+      <category>System Nīti</category>
+      <description>RPO and RTO are promises to the kingdom. Forthcoming — backup strategies, restore drills, schema migrations, the discipline of testing recovery.</description>
+    </item>
+
+    <item>
+      <title>Sutra 11 — The Watch: An open gate invites invasion</title>
+      <link>https://veers.me/posts/11-the-watch.html</link>
+      <guid isPermaLink="true">https://veers.me/posts/11-the-watch.html</guid>
+      <pubDate>Forthcoming</pubDate>
+      <author>veers@veers.me (Veer)</author>
+      <category>Security</category>
+      <category>System Nīti</category>
+      <description>Principle of least privilege. Threat model early. Forthcoming — IAM, mTLS, encryption, secret management, incident response.</description>
+    </item>
+
+    <item>
+      <title>Sutra 12 — The Coronation: A wise king does not burn the city with each celebration</title>
+      <link>https://veers.me/posts/12-the-coronation.html</link>
+      <guid isPermaLink="true">https://veers.me/posts/12-the-coronation.html</guid>
+      <pubDate>Forthcoming</pubDate>
+      <author>veers@veers.me (Veer)</author>
+      <category>Deployment</category>
+      <category>System Nīti</category>
+      <description>Canary releases. Blue-green. Feature flags. Forthcoming — progressive delivery, infrastructure as code, post-deploy verification, rollback discipline.</description>
+    </item>
+
+    <item>
+      <title>Sutra 13 — The Trial: As soon as the fear approaches, attack and destroy it</title>
+      <link>https://veers.me/posts/13-the-trial.html</link>
+      <guid isPermaLink="true">https://veers.me/posts/13-the-trial.html</guid>
+      <pubDate>Forthcoming</pubDate>
+      <author>veers@veers.me (Veer)</author>
+      <category>Chaos</category>
+      <category>System Nīti</category>
+      <description>Chaos engineering is you bringing fear close, so you learn to destroy it on your terms. Forthcoming — fault injection, game days, blast radius, runbook-driven experiments.</description>
+    </item>
+
+    <item>
+      <title>Sutra 14 — The Library: If knowledge dies with the king, the realm enters anarchy</title>
+      <link>https://veers.me/posts/14-the-library.html</link>
+      <guid isPermaLink="true">https://veers.me/posts/14-the-library.html</guid>
+      <pubDate>Forthcoming</pubDate>
+      <author>veers@veers.me (Veer)</author>
+      <category>Docs</category>
+      <category>System Nīti</category>
+      <description>Living docs. Onboarding as part of code quality. Forthcoming — system overviews, runbooks, the two-week onboarding test, documentation as architecture.</description>
+    </item>
+
+    <item>
+      <title>Sutra 15 — The Council: Not knowledge alone, nor force alone</title>
+      <link>https://veers.me/posts/15-the-council.html</link>
+      <guid isPermaLink="true">https://veers.me/posts/15-the-council.html</guid>
+      <pubDate>Forthcoming</pubDate>
+      <author>veers@veers.me (Veer)</author>
+      <category>Governance</category>
+      <category>System Nīti</category>
+      <description>Balance autonomy with platform conventions. Forthcoming — standards without blockade, cost attribution, ethics, the governance cadence.</description>
+    </item>
+
+    <item>
+      <title>The Decree — Ten steps to a resilient realm</title>
+      <link>https://veers.me/posts/decree.html</link>
+      <guid isPermaLink="true">https://veers.me/posts/decree.html</guid>
+      <pubDate>Forthcoming</pubDate>
+      <author>veers@veers.me (Veer)</author>
+      <category>The Decree</category>
+      <category>System Nīti</category>
+      <description>The operating procedure that compresses the fifteen sutras into ten steps. Forthcoming — the weekly, monthly, quarterly, and annual practices that keep the doctrine alive in a system whose people will, eventually, change.</description>
+    </item>
+
+  </channel>
+</rss>

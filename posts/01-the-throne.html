@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en" data-theme="paper">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>The Throne — A system without clear intent is fragile — System Nīti</title>
+  <meta name="description" content="A throne without cause is empty; a system without clear intent is fragile. The first sutra of System Nīti — on the three questions every system must answer before a single line is written.">
+  <meta name="author" content="Veer">
+  <meta property="og:title" content="The Throne — System Nīti">
+  <meta property="og:description" content="A throne without cause is empty; a system without clear intent is fragile.">
+  <meta property="og:type" content="article">
+  <link rel="canonical" href="https://veers.me/posts/01-the-throne.html">
+  <link rel="alternate" type="application/rss+xml" title="System Nīti" href="../rss.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <canvas class="grain" id="grain" aria-hidden="true"></canvas>
+
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <div class="cursor-label" id="cursorLabel"></div>
+  </div>
+
+  <header class="post-nav" id="postNav">
+    <a href="../index.html" class="post-nav-back">
+      <span class="post-nav-back-arrow">←</span>
+      <span>Doctrine</span>
+    </a>
+    <div class="post-nav-title">The Throne</div>
+    <div class="post-nav-meta">
+      <span data-reading-time>— min</span>
+    </div>
+    <div class="post-nav-progress"><div class="post-nav-progress-bar"></div></div>
+  </header>
+
+  <section class="post-hero" data-section="post-hero">
+    <div class="post-hero-grid">
+      <aside class="post-hero-side">
+        <div class="post-hero-eyebrow">
+          <span class="post-hero-eyebrow-num">01</span>
+          <span class="post-hero-eyebrow-cat">अध्याय · ०१</span>
+        </div>
+        <div class="post-hero-sutra">राजा हीनः कारणेन रिक्तः सिंहासनम्</div>
+        <div class="post-hero-byline">
+          <div class="post-hero-byline-row"><span>Author</span><b>Veer</b></div>
+          <div class="post-hero-byline-row"><span>Published</span><b>I · MMXXVI</b></div>
+          <div class="post-hero-byline-row"><span>Series</span><b>System Nīti</b></div>
+          <div class="post-hero-byline-row"><span>Reading</span><b data-reading-time>— min</b></div>
+        </div>
+      </aside>
+      <div class="post-hero-main">
+        <h1 class="post-hero-title" data-reveal-split>A throne without cause is empty; a system without <em>clear intent</em> is fragile.</h1>
+        <p class="post-hero-lede" data-reveal>Before a single line of code is written, before a single container is deployed, before a single team is hired — there are <em>three questions</em> that must be answered in writing, in numbers, in language that survives a leadership change.</p>
+
+        <div class="audio-player" data-cursor="play">
+          <button class="audio-play" aria-label="Listen to this essay">
+            <span class="audio-play-icon audio-play-icon-play"></span>
+          </button>
+          <div class="audio-info">
+            <span class="audio-info-label">Listen to this essay</span>
+            <span class="audio-info-sub">Browser-native · adjust rate with 1×</span>
+          </div>
+          <div class="audio-waveform" aria-hidden="true"></div>
+          <span class="audio-time">0:00 / 0:00</span>
+          <button class="audio-rate" aria-label="Change playback speed">1.00×</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="post-body" data-section="post-body">
+    <div class="post-body-grid">
+      <aside class="post-toc">
+        <div class="post-toc-label"><span>Contents</span></div>
+        <ul class="post-toc-list"></ul>
+      </aside>
+
+      <article class="post-article">
+
+        <p>The kingdom rises or falls in the moment the throne is set. Not in the year of coronation. Not in the decade of consolidation. In the <em>moment</em>. A monarch who cannot say, in a single paragraph, why the realm exists, will rule a court of competing factions, each pulling in the direction of their own self-interest. The same is true of every system. Every service, every microservice, every API, every database, every cron job, every <code>helm install</code>. They all carry an implicit throne. And the throne either has cause — or it has rot.</p>
+
+        <p>This first sutra is the most uncomfortable. It asks for things engineers do not want to give: certainty about purpose, numbers about success, names for failure. The rest of the doctrine — every chapter that follows — is downstream of getting this one right. A kingdom with a clear cause can survive a bad architect, a slow minister, even a foolish general. A kingdom without one cannot survive <em>good fortune</em>, because success will beget expansion, and expansion without purpose is just decay in a faster costume.</p>
+
+        <hr>
+
+        <h2 id="three-questions"><span class="h2-num">§ 01</span>The three questions</h2>
+
+        <p>Every system, before its first commit, must be able to answer three questions. They are the questions Chanakya asked of every king he served. They are not new. They are not fashionable. They are the questions that, when answered badly, make the evening news.</p>
+
+        <p><strong>Why are we building this?</strong> Not what feature. Not what framework. The <em>cause</em>. A user pain that is acute enough to pay for. A business need that is large enough to fund a team. A regulatory obligation that is non-negotiable. A competitive moat that is wide enough to defend. If the answer is "because leadership said so" or "we have budget" — you do not have a system, you have a hobby with infrastructure. Stop here. Re-read the question. Find the cause. If it cannot be found, return the budget and do not build.</p>
+
+        <p><strong>What does success look like?</strong> Not "it works." Not "users like it." Numbers. <em>Specific, measurable, time-bounded</em> numbers. Latency at the 95th percentile. Uptime over a quarter. Monthly active users by month six. Cost per million requests. A target that, if it appears on a dashboard in three months, you will know whether you are winning or losing. If success cannot be defined numerically, it cannot be measured, and what cannot be measured cannot be governed, and what cannot be governed is, in the technical sense of the word, <em>rogue</em>.</p>
+
+        <p><strong>What is the failure mode we must survive?</strong> Not "what can go wrong" — everything can go wrong. The question is: of the infinite ways this can fail, which one would end the kingdom? Data loss? Extended downtime? Security breach? Vendor lock-in? Founder departure? Regulatory change? A system designed to survive the wrong failure mode is fragile in exactly the way the world will eventually test. A payment system that survives vendor lock-in but loses a transaction is not a payment system. A healthcare system that survives uptime but leaks patient data is not a healthcare system. <em>Pick the failure you cannot afford, and design backwards from it.</em></p>
+
+        <aside class="post-callout post-callout--principle">
+          <div class="post-callout-icon">P</div>
+          <div class="post-callout-body">
+            <div class="post-callout-label">Principle</div>
+            <p>The three questions are not a design document. They are not a kickoff slide. They are the <strong>terms of office</strong>. Every architectural decision, every sprint, every postmortem, every hiring choice is downstream of them. If a decision contradicts an answer, the decision is wrong. If a decision does not serve an answer, the decision is decoration.</p>
+          </div>
+        </aside>
+
+        <h2 id="non-negotiables"><span class="h2-num">§ 02</span>The non-negotiables</h2>
+
+        <p>Once the three questions are answered, the next step is to write down what you will <em>not</em> trade away. This is the hardest writing an engineering organization ever does. Not because the words are difficult — because admitting what is non-negotiable forces the organization to admit what <em>is</em> negotiable, and what is negotiable will, by some dark gravitational law, eventually be traded away.</p>
+
+        <p>A non-negotiable is not a feature. A non-negotiable is an <em>invariant</em>. It is a property the system must have regardless of cost, regardless of timeline, regardless of who is yelling. For a payment system: <strong>no transaction is ever lost or duplicated</strong>. That is the throne. Every architectural decision either serves the throne, or it does not. If a feature would compromise it, the feature is rejected. If a vendor cannot guarantee it, the vendor is replaced. If a deadline would force a violation, the deadline is missed. The throne is not negotiable because the kingdom ends without it.</p>
+
+        <p>For a healthcare system: patient data is confidential and accessible only to those with cause. Non-negotiable. For a content platform: a creator's reach is not artificially constrained to extract rent. Non-negotiable. For a financial product: the user can always withdraw their own money, even if it embarrasses the company. Non-negotiable. The list is short — three to five items. If it is longer, none of them are non-negotiable, they are merely preferences. The discipline of being unable to write down a non-negotiable is itself useful: it tells you that the throne is undefined, and the system is unbuildable until it is.</p>
+
+        <h3 id="non-negotiables-test">The test</h3>
+
+        <p>For each candidate non-negotiable, ask: <em>if we violated this once, knowingly, to win a major deal or hit a deadline, would the kingdom end?</em> If the answer is yes, it is non-negotiable. If the answer is "it would be bad" or "it would cost us customers" — it is a goal, not a non-negotiable. Goals are achieved by effort. Non-negotiables are achieved by architecture. A non-negotiable that the architecture can violate is not a non-negotiable. It is a wish.</p>
+
+        <h2 id="quantify-everything"><span class="h2-num">§ 03</span>Quantify everything</h2>
+
+        <p>Politics is the art of turning numbers into feelings. Engineering is the art of turning feelings into numbers. The first sutra requires engineering. So we quantify.</p>
+
+        <p>"Fast" is not a number. <em>"p95 latency under 100ms for the read path at 10K QPS"</em> is a number. "Reliable" is not a number. <em>"99.95% availability measured monthly, excluding planned maintenance windows declared 14 days in advance"</em> is a number. "Cheap" is not a number. <em>"$0.40 per million requests, including egress, compute amortized over 30 days"</em> is a number. The act of writing the number is the act of making a promise the dashboard can keep.</p>
+
+        <p>Every promise needs a measurement. The measurement needs an owner. The owner needs a runbook. The runbook needs to be tested. This is not bureaucracy — this is the <em>discipline of the throne</em>. Without it, every architectural decision is a coin flip, every outage is a surprise, every retrospective is a confession. With it, the system becomes a creature with reflexes, not a creature with reflexes only on Tuesdays.</p>
+
+        <pre><code class="language-yaml"># service-slo.yaml — example SLO declaration
+service: payments-api
+version: "2026.06"
+owner: payments-platform@veers.me
+slos:
+  - name: read_latency
+    description: "Read path latency for /v2/charges and /v2/refunds"
+    slo: 0.95
+    target: 100ms
+    window: 30d
+    error_budget_minutes_per_month: 21.9     # 0.05% of 30d
+  - name: write_durability
+    description: "Zero data loss; verified by reconciliation"
+    slo: 1.0
+    target: 0
+    window: continuous
+  - name: cost_per_million
+    description: "Fully loaded cost per million successful API calls"
+    slo: 0.40
+    target: 0.40
+    window: 30d
+budget_policy:
+  burn_rate_alert: 2x                     # 14.4x in 1h triggers page
+  freeze_releases_at: 80% budget consumed
+  postmortem_required_above: 5% in any 1h window</code></pre>
+
+        <aside class="post-callout post-callout--example">
+          <div class="post-callout-icon">E</div>
+          <div class="post-callout-body">
+            <div class="post-callout-label">Example</div>
+            <p>An SLO is not a target you set. It is a <strong>ceiling you have already failed to meet</strong>. By the time the SLO document is signed, you have agreed to be paged when reality approaches it. If the SLO is ambitious enough that no one has ever operated the service at that level — fine, that is the point. If the SLO is so loose that any competent team would meet it without thinking — also fine, that is a different point. The trap is the SLO that is achievable but uncomfortable: the team will, in a moment of pressure, decide to "fix it next quarter." That quarter never comes.</p>
+          </div>
+        </aside>
+
+        <h2 id="case-studies"><span class="h2-num">§ 04</span>Three thrones, three collapses</h2>
+
+        <p>The first sutra is best learned from the consequences of ignoring it. Three collapses — Knight Capital, Healthcare.gov, and a quiet internal one we will call <em>Helix</em> — show what happens when the throne is undefined. The first is a financial blow-up. The second is a public-sector disaster. The third is the kind of slow, multi-year failure that afflicts every organization that believes it has more time than it does.</p>
+
+        <h3 id="knight-capital">Knight Capital, 2012 — the test environment was the throne</h3>
+
+        <p>On the morning of 1 August 2012, Knight Capital Group deployed a new piece of trading software to its production market-making system. The deployment went out to seven of Knight's eight servers. The eighth — a server in a data center in New Jersey that handled retail order flow — was missed. That server kept the old version of the code. The new code was a <em>smoke test</em>: a flag-triggered test path intended for the new retail order flow, but loaded with a dormant function — <code>Power Peg</code> — that, when executed, bought and immediately resold stocks at increasingly high volumes. The function should never have been enabled in production. It was.</p>
+
+        <p>For forty-five minutes that morning, Knight's misconfigured server executed millions of unauthorized trades. The system bought high, sold low, bought high, sold low. The system had <strong>no test path for "what if this server is the only one running this version"</strong>. The system had <strong>no rate-limit on a newly-enabled test function</strong>. The system had <strong>no kill switch that an operator could engage in under five minutes</strong>. The system had <strong>no central logging that would have shown, in real time, that one of eight servers was behaving catastrophically differently from the other seven</strong>. The system had <strong>no defined non-negotiable: "test code must never be able to execute real trades"</strong>. It had a flag. The flag was mis-set. The throne was empty.</p>
+
+        <p>Knight lost <em>$440 million</em> in forty-five minutes. The firm survived less than a year. It was acquired in late 2012 for a fraction of its former value. The proximate cause was a deployment script that did not check all servers. The throne-cause was a system that did not have, in writing, a non-negotiable: <em>test code paths must be unable to affect production capital</em>. Had that non-negotiable existed, the deployment script would have had to verify, before promotion, that no test function was reachable from a production code path. The system would have failed the deployment check. The flag would not have been armed. The loss would not have happened.</p>
+
+        <aside class="post-callout post-callout--antipattern">
+          <div class="post-callout-icon">×</div>
+          <div class="post-callout-body">
+            <div class="post-callout-label">Anti-pattern</div>
+            <p>The <strong>"it works in dev"</strong> anti-pattern. A test function that works in dev will, eventually, work in prod — and will, eventually, fire when the conditions that should never have existed together briefly do. The fix is not better testing. The fix is <em>architectural impossibility</em>: a test function that <strong>cannot be invoked</strong> from a production code path, because the symbols do not exist, because the runtime context rejects them, because the deployment artifact strips them. If a test function is one copy-paste away from production, you do not have a test function — you have a bomb with a flag.</p>
+          </div>
+        </aside>
+
+        <h3 id="healthcare-gov">Healthcare.gov, 2013 — the throne was the wrong throne</h3>
+
+        <p>Healthcare.gov launched on 1 October 2013 and crashed within two hours. The site could not handle the load. Six months later, the site was working. The cost of the fix was nearly $1 billion. The cause was not bad engineers. The cause was not a bad vendor. The cause was a throne that had been defined, but defined <em>wrong</em>.</p>
+
+        <p>Healthcare.gov's throne was: <em>"launch the marketplace on October 1, 2013."</em> That is a date, not a cause. A date is an invariant imposed from outside; a cause is an invariant chosen from inside. The first sutra would have re-framed: <em>"why are we building this?"</em> To enroll Americans in health insurance plans starting in 2014. <em>"What does success look like?"</em> Eligible users can complete enrollment in under thirty minutes, with their subsidy correctly calculated, in a session that does not lose state. <em>"What is the failure mode we must survive?"</em> High launch-day traffic from a population that has been waiting months to enroll, on a system that must integrate with dozens of state and federal databases, some of which had never been load-tested against this kind of volume.</p>
+
+        <p>Those answers would have produced a different system. They would have produced a system that could be load-tested at 2x, 5x, 10x expected traffic, with synthetic enrollments, weeks before launch. They would have produced a system where the launch could have been <em>rolled out by state, by age cohort, by income band</em> — a controlled exposure. They would have produced a system where the question "what is the failure mode we must survive" had been answered with: <em>launch-day traffic from millions of concurrent users on infrastructure that has never seen that volume</em> — and the architecture would have absorbed that.</p>
+
+        <p>Instead, the architecture served the date. The date was wrong. The architecture, then, was wrong. The throne was the date. The kingdom fell on day one.</p>
+
+        <h3 id="helix">Helix — the slow throne</h3>
+
+        <p>This one is internal. Names changed. The shape is universal. Helix was an internal platform at a large company, built to give product teams a fast way to deploy services. It launched in 2019. By 2023, it was the most-hated system in the company. By 2024, teams were migrating off it. By 2025, it was scheduled for deprecation.</p>
+
+        <p>The throne of Helix was: <em>"let product teams deploy faster."</em> The throne was right. The cause was real. The throne was, however, <em>defined by the builders</em>, not the users. The builders were platform engineers. The users were product engineers. The builders defined success as: <em>"a service can be deployed from a git push."</em> They hit the number. They shipped. They celebrated.</p>
+
+        <p>The users defined success differently. The users wanted: <em>"a service that I can debug in production, that pages the right person, that does not surprise me at 3am, that does not require me to learn a new YAML schema every six months."</em> None of those things were measured. None of those things were in the non-negotiables. The platform team, being measured on deployment speed, optimized for deployment speed. The user experience, not being measured, slowly rotted. By 2023, deploying was fast; <em>everything else</em> was slow. The platform became a tax on attention, a source of cognitive overhead, a reason engineers left the company.</p>
+
+        <p>The lesson: the throne must be defined by <em>the one who will be held accountable for the kingdom</em>. If the platform team is held accountable for the product team's velocity, the throne is product velocity. If the platform team is held accountable for product-team <em>health</em>, the throne is product health. The two are different thrones. The first optimizes for speed. The second optimizes for sustainable speed. The first is doomed to be deprecated. The second is doomed to be loved. The throne is what the throne-keeper is measured against. Choose the keeper first. The throne follows.</p>
+
+        <h2 id="defending-the-throne"><span class="h2-num">§ 05</span>Defending the throne</h2>
+
+        <p>Defining the throne is not the end. It is the beginning. A throne that is not defended is a throne that is, eventually, abdicated. The defense is the operating cadence of the system: the weekly review of SLOs, the quarterly postmortem of the failure mode that almost happened, the annual reassessment of whether the throne still matches the cause.</p>
+
+        <h3 id="weekly-cadence">The weekly review</h3>
+
+        <p>Every Monday morning, in thirty minutes, the throne-keeper and two senior engineers review the SLO dashboard. Not the deployment dashboard. Not the velocity dashboard. The SLO dashboard. Did latency creep last week? Did the error budget burn faster than expected? Is there a single service whose behavior is approaching the line? If yes, action this week. If no, close the meeting. The cadence of the review is the cadence of the throne: weekly, because the throne is weekly threatened, and a throne that is not watched is a throne that is lost.</p>
+
+        <h3 id="the-failure-mode-drill">The failure-mode drill</h3>
+
+        <p>Once a quarter, the team picks one of the failure modes from the throne document — the failure mode the throne was designed to survive — and tries to <em>cause</em> it. Not in production, of course. In a staging environment, with the same architecture, the same dependencies, the same observability. The drill produces three artifacts: a timeline of how the failure unfolded, a list of which defenses worked and which did not, and a list of small changes that would have made the defense stronger. The drill is the practice of war in peacetime. A kingdom that does not drill cannot defend. A system that does not drill cannot survive.</p>
+
+        <h3 id="annual-reassessment">The annual reassessment</h3>
+
+        <p>Once a year, the throne itself is re-examined. Is the cause still the cause? Is the success metric still the right metric? Is the failure mode still the failure mode that would end the kingdom? In five years, the world will have changed. The competitors will have changed. The customers will have changed. The regulators will have changed. The throne, if it has not been re-examined, will be the throne of a kingdom that no longer exists. <em>Annual reassessment is not a sign of weakness. It is the sign of a throne that has lasted longer than the season that built it.</em></p>
+
+        <aside class="post-callout post-callout--warning">
+          <div class="post-callout-icon">!</div>
+          <div class="post-callout-body">
+            <div class="post-callout-label">Warning</div>
+            <p>The annual reassessment is the most-skipped step in the doctrine, because it requires admitting that last year's throne might have been wrong. Most organizations skip it for the same reason most people skip the annual physical: the cost of finding out is higher than the comfort of not knowing. The cost of finding out, however, is always lower than the cost of discovering, three years from now, in production, at 3am, that the throne was wrong.</p>
+          </div>
+        </aside>
+
+        <h2 id="closing-the-sutra"><span class="h2-num">§ 06</span>The closing of the sutra</h2>
+
+        <p>A throne without cause is empty. A system without clear intent is fragile. The two are the same sentence in two languages: the language of kings, and the language of engineers. The first language is older. The second language is the one we speak, and the one we will be held to.</p>
+
+        <p>If you take from this sutra only one thing, take this: <em>do not write code until you can write down, in one paragraph, the cause of the system, the number that measures its success, and the failure that would end it.</em> If you cannot write that paragraph, the system does not exist. You have a sketch, a wish, a budget. The throne is empty. Wait. Find the cause. Then build.</p>
+
+        <blockquote class="post-pullquote">
+          <p>The kingdom rises or falls in the moment the throne is set. Everything that follows is downstream of that moment — the architecture, the ministers, the armies, the spies, the gates. Set the throne with care. Then defend it for a decade.</p>
+          <cite class="post-pullquote-cite">— System Nīti, Sutra 01</cite>
+        </blockquote>
+
+        <hr>
+
+        <h3 id="glossary">Glossary of terms used in this sutra</h3>
+
+        <div class="post-defs">
+          <div class="post-defs-row">
+            <div class="post-defs-term">SLO</div>
+            <div class="post-defs-def">Service-Level Objective. A target level of reliability or performance, expressed as a number over a window. Example: "99.95% of requests succeed within 100ms, measured over 30 days."</div>
+          </div>
+          <div class="post-defs-row">
+            <div class="post-defs-term">Error budget</div>
+            <div class="post-defs-def">The complement of an SLO. For a 99.95% SLO over 30 days, the error budget is 0.05% of the time — 21.9 minutes. The budget is the team's permission to fail; burning it freezes releases.</div>
+          </div>
+          <div class="post-defs-row">
+            <div class="post-defs-term">Non-negotiable</div>
+            <div class="post-defs-def">An invariant the architecture must enforce. Violation ends the kingdom. Distinct from a goal, which is achieved by effort. A non-negotiable is achieved by architecture, not by trying.</div>
+          </div>
+          <div class="post-defs-row">
+            <div class="post-defs-term">Burn rate</div>
+            <div class="post-defs-def">The rate at which the error budget is being consumed. A burn rate of 2x means the budget will be exhausted in half the window. Burn rates above 10x typically trigger pages.</div>
+          </div>
+          <div class="post-defs-row">
+            <div class="post-defs-term">Failure-mode drill</div>
+            <div class="post-defs-def">A scheduled, controlled attempt to cause a known failure mode in a non-production environment, in order to validate that the system's defenses (rate limits, circuit breakers, kill switches) actually work as designed.</div>
+          </div>
+        </div>
+
+        <aside class="post-aside">
+          <div class="post-aside-label">Cite this essay</div>
+          Veer. (MMXXVI). <em>The Throne — A system without clear intent is fragile.</em> System Nīti. https://veers.me/posts/01-the-throne.html
+        </aside>
+
+        <div class="post-colophon">
+          <div class="post-colophon-row"><span>Composed in</span><b>HTML / CSS / JS — no frameworks</b></div>
+          <div class="post-colophon-row"><span>Type</span><b>Fraunces · Inter · JetBrains Mono</b></div>
+          <div class="post-colophon-row"><span>Series</span><b>System Nīti · Requirements</b></div>
+          <div class="post-colophon-row"><span>Sutra</span><b>01 of 15 — The Throne</b></div>
+        </div>
+      </article>
+    </div>
+
+    <nav class="post-pager">
+      <a class="post-pager-link post-pager-link--prev" href="../index.html#preface">
+        <span class="post-pager-direction">← Back to the Preface</span>
+        <span class="post-pager-title">You who would be ruler of systems…</span>
+      </a>
+      <a class="post-pager-link post-pager-link--next" href="02-the-fort.html">
+        <span class="post-pager-direction">Next Sutra →</span>
+        <span class="post-pager-title">Build the fort before you invite the market.</span>
+      </a>
+    </nav>
+
+    <section class="post-related">
+      <div class="post-related-label">Other essays in the doctrine</div>
+      <div class="post-related-grid">
+        <a class="post-related-card" href="02-the-fort.html">
+          <span class="post-related-num">02 · Architecture</span>
+          <span class="post-related-title">Build the fort before you invite the market.</span>
+          <span class="post-related-meta">The Fort · ~6,000 words</span>
+        </a>
+        <a class="post-related-card" href="07-the-armies.html">
+          <span class="post-related-num">07 · Scaling</span>
+          <span class="post-related-title">Armies that cannot coordinate lose battles.</span>
+          <span class="post-related-meta">The Armies · ~6,000 words</span>
+        </a>
+        <a class="post-related-card" href="13-the-trial.html">
+          <span class="post-related-num">13 · Chaos</span>
+          <span class="post-related-title">As soon as the fear approaches, attack and destroy it.</span>
+          <span class="post-related-meta">The Trial · ~6,000 words</span>
+        </a>
+      </div>
+    </section>
+  </section>
+
+  <footer class="footer" id="colophon">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-mark">नीति</div>
+        <p class="footer-pitch">A field manual for designing <em>resilient systems</em> — restated from Chanakya for those who rule small republics of services.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-label">Doctrine</div>
+          <a href="../index.html#preface">Preface</a>
+          <a href="../index.html#chapters">The Fifteen Sutras</a>
+          <a href="../index.html#decree">The Decree</a>
+          <a href="../archive.html">All Essays</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Colophon</div>
+          <span>Set in Fraunces &amp; Inter</span>
+          <span>Composed in HTML / CSS / JS</span>
+          <span>No frameworks, no build</span>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Coordinates</div>
+          <a href="https://veers.me">veers.me</a>
+          <span id="footerTime">— : — : —</span>
+          <span>MMXXVI</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© MMXXVI &nbsp;·&nbsp; System Nīti</span>
+      <span class="footer-mantra">सत्यमेव जयते</span>
+      <span>v.1.1.0</span>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

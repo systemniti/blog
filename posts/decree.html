@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en" data-theme="paper">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>The Decree — Ten steps to a resilient realm — System Nīti</title>
+  <meta name="description" content="The Decree — the ten-step operating procedure that compresses the fifteen sutras into a working cadence for any system that must survive what the founders did not imagine.">
+  <meta name="author" content="Veer">
+  <meta property="og:title" content="The Decree — System Nīti">
+  <meta property="og:description" content="Ten steps to a resilient realm.">
+  <meta property="og:type" content="article">
+  <link rel="canonical" href="https://veers.me/posts/decree.html">
+  <link rel="alternate" type="application/rss+xml" title="System Nīti" href="../rss.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <canvas class="grain" id="grain" aria-hidden="true"></canvas>
+
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <div class="cursor-label" id="cursorLabel"></div>
+  </div>
+
+  <header class="post-nav" id="postNav">
+    <a href="../index.html" class="post-nav-back">
+      <span class="post-nav-back-arrow">←</span>
+      <span>Doctrine</span>
+    </a>
+    <div class="post-nav-title">The Decree</div>
+    <div class="post-nav-meta">
+      <span data-reading-time>— min</span>
+    </div>
+    <div class="post-nav-progress"><div class="post-nav-progress-bar"></div></div>
+  </header>
+
+  <section class="post-hero" data-section="post-hero">
+    <div class="post-hero-grid">
+      <aside class="post-hero-side">
+        <div class="post-hero-eyebrow">
+          <span class="post-hero-eyebrow-num">16</span>
+          <span class="post-hero-eyebrow-cat">अध्याय · १६</span>
+        </div>
+        <div class="post-hero-sutra">आज्ञा दश दशकृत्वः</div>
+        <div class="post-hero-byline">
+          <div class="post-hero-byline-row"><span>Author</span><b>Veer</b></div>
+          <div class="post-hero-byline-row"><span>Published</span><b>Forthcoming</b></div>
+          <div class="post-hero-byline-row"><span>Series</span><b>System Nīti</b></div>
+          <div class="post-hero-byline-row"><span>Reading</span><b data-reading-time>— min</b></div>
+        </div>
+      </aside>
+      <div class="post-hero-main">
+        <h1 class="post-hero-title" data-reveal-split>Ten steps to a <em>resilient realm</em>.</h1>
+        <p class="post-hero-lede" data-reveal>Design not for glory, but for surviving the day the unknown arrives. The Decree is the operating procedure — a working compression of the fifteen sutras into ten steps, with the cadence of when to do each one and the cost of skipping it.</p>
+
+        <div class="audio-player" data-cursor="play">
+          <button class="audio-play" aria-label="Listen to this essay">
+            <span class="audio-play-icon audio-play-icon-play"></span>
+          </button>
+          <div class="audio-info">
+            <span class="audio-info-label">Listen to this essay</span>
+            <span class="audio-info-sub">Audio will be available when the essay is published</span>
+          </div>
+          <div class="audio-waveform" aria-hidden="true"></div>
+          <span class="audio-time">— / —</span>
+          <button class="audio-rate" aria-label="Change playback speed">1.00×</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="post-body" data-section="post-body">
+    <div class="post-body-grid">
+      <aside class="post-toc">
+        <div class="post-toc-label"><span>Contents</span></div>
+        <ul class="post-toc-list"></ul>
+      </aside>
+
+      <article class="post-article">
+
+        <p>The Decree is not a fifteenth sutra. The Decree is the operating cadence: the small, repeated, often boring things you do every week and every quarter to keep the fifteen sutras alive. A sutra you do not <em>do</em> is a sutra you have abandoned, no matter how often it is cited in the team wiki.</p>
+
+        <p>The Decree is forthcoming. The structure of the essay will be the ten steps themselves, each with: the step, the test that proves you have done it, the cadence at which you must repeat it, and the failure mode that the step is designed to prevent. The full deep-dive will follow the same editorial pattern as the sutra essays: case studies, anti-patterns, and the working vocabulary of the cadence.</p>
+
+        <h2 id="the-ten-steps">The ten steps (summary)</h2>
+
+        <p>The ten steps, in their short form, are:</p>
+
+        <ol>
+          <li><strong>Define success.</strong> Three metrics. Three numbers. One dashboard.</li>
+          <li><strong>Draw boundaries.</strong> One page diagram of services &amp; data ownership.</li>
+          <li><strong>Choose stores.</strong> Map each data domain to DB type and partition key.</li>
+          <li><strong>Instrument.</strong> Wire metrics, traces, logs, and a dashboard before the first feature ship.</li>
+          <li><strong>Set SLOs.</strong> Error budget &amp; release policy.</li>
+          <li><strong>Automate deployment.</strong> CI / CD, canaries, feature flags.</li>
+          <li><strong>Practice failure.</strong> Scheduled chaos, restore drills, postmortems.</li>
+          <li><strong>Document.</strong> Publish runbooks and onboarding paths.</li>
+          <li><strong>Govern.</strong> Retrospective on cost &amp; risk every quarter.</li>
+          <li><strong>Re-state the throne.</strong> Annual reassessment of the cause, the success metric, and the failure mode.</li>
+        </ol>
+
+        <p>Each step has a test. Each test is binary. Each binary test produces a dashboard. Each dashboard is reviewed at the cadence that the step requires. The cadence is not optional. The cadence is the throne.</p>
+
+        <aside class="post-callout post-callout--principle">
+          <div class="post-callout-icon">P</div>
+          <div class="post-callout-body">
+            <div class="post-callout-label">Principle</div>
+            <p>The Decree is the part of the doctrine that <strong>most teams skip</strong>, because the steps are individually small enough to feel trivial. The whole point of the Decree is that the steps are individually small enough to be done — and collectively large enough that, if they are not done, the system decays. The decay is slow. The decay is invisible. The decay is, eventually, total. A system that runs the Decree survives a decade. A system that does not, survives the next quarter.</p>
+          </div>
+        </aside>
+
+        <hr>
+
+        <aside class="post-aside">
+          <div class="post-aside-label">Cite this page</div>
+          Veer. (Forthcoming). <em>The Decree — Ten steps to a resilient realm.</em> System Nīti. https://veers.me/posts/decree.html
+        </aside>
+
+        <div class="post-colophon">
+          <div class="post-colophon-row"><span>Composed in</span><b>HTML / CSS / JS — no frameworks</b></div>
+          <div class="post-colophon-row"><span>Type</span><b>Fraunces · Inter · JetBrains Mono</b></div>
+          <div class="post-colophon-row"><span>Series</span><b>System Nīti · The Decree</b></div>
+          <div class="post-colophon-row"><span>Number</span><b>16 of 16 — The Decree</b></div>
+        </div>
+      </article>
+    </div>
+
+    <nav class="post-pager">
+      <a class="post-pager-link post-pager-link--prev" href="15-the-council.html">
+        <span class="post-pager-direction">← Previous Sutra</span>
+        <span class="post-pager-title">Not knowledge alone, nor force alone.</span>
+      </a>
+      <a class="post-pager-link post-pager-link--next" href="../index.html">
+        <span class="post-pager-direction">Return to the Doctrine →</span>
+        <span class="post-pager-title">System Nīti — the full doctrine</span>
+      </a>
+    </nav>
+
+    <section class="post-related">
+      <div class="post-related-label">Other essays in the doctrine</div>
+      <div class="post-related-grid">
+        <a class="post-related-card" href="15-the-council.html">
+          <span class="post-related-num">15 · Governance</span>
+          <span class="post-related-title">Not knowledge alone, nor force alone.</span>
+          <span class="post-related-meta">The Council · ~6,000 words</span>
+        </a>
+        <a class="post-related-card" href="09-the-gate.html">
+          <span class="post-related-num">09 · Resilience</span>
+          <span class="post-related-title">When the battering-ram approaches.</span>
+          <span class="post-related-meta">The Gate · ~6,000 words</span>
+        </a>
+        <a class="post-related-card" href="12-the-coronation.html">
+          <span class="post-related-num">12 · Deployment</span>
+          <span class="post-related-title">A wise king does not burn the city with each celebration.</span>
+          <span class="post-related-meta">The Coronation · ~6,000 words</span>
+        </a>
+      </div>
+    </section>
+  </section>
+
+  <footer class="footer" id="colophon">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-mark">नीति</div>
+        <p class="footer-pitch">A field manual for designing <em>resilient systems</em> — restated from Chanakya for those who rule small republics of services.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-label">Doctrine</div>
+          <a href="../index.html#preface">Preface</a>
+          <a href="../index.html#chapters">The Fifteen Sutras</a>
+          <a href="../index.html#decree">The Decree</a>
+          <a href="../archive.html">All Essays</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Colophon</div>
+          <span>Set in Fraunces &amp; Inter</span>
+          <span>Composed in HTML / CSS / JS</span>
+          <span>No frameworks, no build</span>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Coordinates</div>
+          <a href="https://veers.me">veers.me</a>
+          <span id="footerTime">— : — : —</span>
+          <span>MMXXVI</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© MMXXVI &nbsp;·&nbsp; System Nīti</span>
+      <span class="footer-mantra">सत्यमेव जयते</span>
+      <span>v.1.1.0</span>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

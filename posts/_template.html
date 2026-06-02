@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en" data-theme="paper">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{TITLE}} — System Nīti</title>
+  <meta name="description" content="{{DESCRIPTION}}">
+  <meta name="author" content="Veer">
+  <meta property="og:title" content="{{TITLE}} — System Nīti">
+  <meta property="og:description" content="{{DESCRIPTION}}">
+  <meta property="og:type" content="article">
+  <link rel="canonical" href="https://veers.me/posts/{{SLUG}}.html">
+  <link rel="alternate" type="application/rss+xml" title="System Nīti" href="../rss.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <!-- ═══════ GRAIN OVERLAY ═══════ -->
+  <canvas class="grain" id="grain" aria-hidden="true"></canvas>
+
+  <!-- ═══════ CURSOR ═══════ -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <div class="cursor-label" id="cursorLabel"></div>
+  </div>
+
+  <!-- ═══════ POST NAV (with reading progress) ═══════ -->
+  <header class="post-nav" id="postNav">
+    <a href="../index.html" class="post-nav-back">
+      <span class="post-nav-back-arrow">←</span>
+      <span>Doctrine</span>
+    </a>
+    <div class="post-nav-title">{{SHORT_TITLE}}</div>
+    <div class="post-nav-meta">
+      <span data-reading-time>— min</span>
+    </div>
+    <div class="post-nav-progress"><div class="post-nav-progress-bar"></div></div>
+  </header>
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="post-hero" data-section="post-hero">
+    <div class="post-hero-grid">
+      <aside class="post-hero-side">
+        <div class="post-hero-eyebrow">
+          <span class="post-hero-eyebrow-num">{{NUM}}</span>
+          <span class="post-hero-eyebrow-cat">अध्याय · {{DEVA}}</span>
+        </div>
+        <div class="post-hero-sutra">{{SANSKRIT_TITLE}}</div>
+        <div class="post-hero-byline">
+          <div class="post-hero-byline-row"><span>Author</span><b>Veer</b></div>
+          <div class="post-hero-byline-row"><span>Published</span><b>{{DATE}}</b></div>
+          <div class="post-hero-byline-row"><span>Series</span><b>System Nīti</b></div>
+          <div class="post-hero-byline-row"><span>Reading</span><b data-reading-time>— min</b></div>
+        </div>
+      </aside>
+      <div class="post-hero-main">
+        <h1 class="post-hero-title" data-reveal-split>{{TITLE}}</h1>
+        <p class="post-hero-lede" data-reveal>{{LEDE}}</p>
+
+        <!-- Audio player -->
+        <div class="audio-player" data-cursor="play">
+          <button class="audio-play" aria-label="Listen to this essay">
+            <span class="audio-play-icon audio-play-icon-play"></span>
+          </button>
+          <div class="audio-info">
+            <span class="audio-info-label">Listen to this essay</span>
+            <span class="audio-info-sub">Browser-native · adjust rate with 1×</span>
+          </div>
+          <div class="audio-waveform" aria-hidden="true"></div>
+          <span class="audio-time">0:00 / 0:00</span>
+          <button class="audio-rate" aria-label="Change playback speed">1.00×</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ ARTICLE BODY ═══════ -->
+  <section class="post-body" data-section="post-body">
+    <div class="post-body-grid">
+      <aside class="post-toc">
+        <div class="post-toc-label">
+          <span>Contents</span>
+        </div>
+        <ul class="post-toc-list"></ul>
+      </aside>
+
+      <article class="post-article">
+
+        <!-- ╔═══════ ESSAY CONTENT STARTS HERE ═══════╗ -->
+        <!-- Use h2 / h3 with explicit ids (TOC will pick them up) -->
+        <!-- Components available:
+             <h2 id="...">Title</h2>
+             <h3 id="...">Subtitle</h3>
+             <p>...</p>
+             <blockquote class="post-pullquote"><p>...</p><cite class="post-pullquote-cite">— Author</cite></blockquote>
+             <aside class="post-callout post-callout--principle"><div class="post-callout-icon">P</div><div class="post-callout-body"><div class="post-callout-label">Principle</div>...</div></aside>
+             <aside class="post-callout post-callout--warning"><div class="post-callout-icon">!</div><div class="post-callout-body"><div class="post-callout-label">Warning</div>...</div></aside>
+             <aside class="post-callout post-callout--example"><div class="post-callout-icon">E</div><div class="post-callout-body"><div class="post-callout-label">Example</div>...</div></aside>
+             <aside class="post-callout post-callout--antipattern"><div class="post-callout-icon">×</div><div class="post-callout-body"><div class="post-callout-label">Anti-pattern</div>...</div></aside>
+             <pre><code class="language-javascript">...</code></pre>
+             <ul><li>...</li></ul>
+             <ol><li>...</li></ol>
+             <hr>
+             <div class="post-defs"><div class="post-defs-row"><div class="post-defs-term">Term</div><div class="post-defs-def">Definition</div></div></div>
+             <aside class="post-aside"><div class="post-aside-label">Note</div>...</aside>
+        -->
+
+        <h2 id="first-section">Replace me</h2>
+        <p>Replace me with your essay. Aim for ~6,000 words for a deep-dive. Use h2 for major sections and h3 for subsections — the table of contents on the left will auto-build from these.</p>
+        <p>The <code>post-callout--principle</code>, <code>post-callout--example</code>, <code>post-callout--warning</code>, and <code>post-callout--antipattern</code> callouts add rhythm. <code>post-pullquote</code> for editorial moments. Code blocks use Prism syntax highlighting — declare the language in the class: <code>language-python</code>, <code>language-go</code>, <code>language-yaml</code>, <code>language-sql</code>, <code>language-bash</code>, etc.</p>
+
+        <aside class="post-callout post-callout--example">
+          <div class="post-callout-icon">E</div>
+          <div class="post-callout-body">
+            <div class="post-callout-label">Example</div>
+            <p>Callout body. Use this for inline examples that interrupt the prose.</p>
+          </div>
+        </aside>
+
+        <blockquote class="post-pullquote">
+          <p>Pull quote for editorial moments. The body of this — italic in display serif — sits in the gutter.</p>
+          <cite class="post-pullquote-cite">— Author</cite>
+        </blockquote>
+
+        <!-- ╚═══════ ESSAY CONTENT ENDS HERE ═══════╝ -->
+
+        <hr>
+
+        <aside class="post-aside">
+          <div class="post-aside-label">Cite this essay</div>
+          Veer. ({{YEAR}}). <em>{{TITLE}}</em>. System Nīti. https://veers.me/posts/{{SLUG}}.html
+        </aside>
+
+        <!-- colophon -->
+        <div class="post-colophon">
+          <div class="post-colophon-row"><span>Composed in</span><b>HTML / CSS / JS — no frameworks</b></div>
+          <div class="post-colophon-row"><span>Type</span><b>Fraunces · Inter · JetBrains Mono</b></div>
+          <div class="post-colophon-row"><span>Series</span><b>System Nīti · {{CATEGORY}}</b></div>
+          <div class="post-colophon-row"><span>Sutra</span><b>{{NUM}} of 15 — {{TITLE_SHORT}}</b></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Prev / Next pager -->
+    <nav class="post-pager">
+      <a class="post-pager-link post-pager-link--prev" href="{{PREV_HREF}}">
+        <span class="post-pager-direction">← Previous Sutra</span>
+        <span class="post-pager-title">{{PREV_TITLE}}</span>
+      </a>
+      <a class="post-pager-link post-pager-link--next" href="{{NEXT_HREF}}">
+        <span class="post-pager-direction">Next Sutra →</span>
+        <span class="post-pager-title">{{NEXT_TITLE}}</span>
+      </a>
+    </nav>
+
+    <!-- Related posts -->
+    <section class="post-related">
+      <div class="post-related-label">Other essays in the doctrine</div>
+      <div class="post-related-grid">
+        <a class="post-related-card" href="{{RELATED1_HREF}}">
+          <span class="post-related-num">{{RELATED1_NUM}}</span>
+          <span class="post-related-title">{{RELATED1_TITLE}}</span>
+          <span class="post-related-meta">{{RELATED1_META}}</span>
+        </a>
+        <a class="post-related-card" href="{{RELATED2_HREF}}">
+          <span class="post-related-num">{{RELATED2_NUM}}</span>
+          <span class="post-related-title">{{RELATED2_TITLE}}</span>
+          <span class="post-related-meta">{{RELATED2_META}}</span>
+        </a>
+        <a class="post-related-card" href="{{RELATED3_HREF}}">
+          <span class="post-related-num">{{RELATED3_NUM}}</span>
+          <span class="post-related-title">{{RELATED3_TITLE}}</span>
+          <span class="post-related-meta">{{RELATED3_META}}</span>
+        </a>
+      </div>
+    </section>
+  </section>
+
+  <!-- ═══════ SHARED FOOTER ═══════ -->
+  <footer class="footer" id="colophon">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-mark">नीति</div>
+        <p class="footer-pitch">A field manual for designing <em>resilient systems</em> — restated from Chanakya for those who rule small republics of services.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-label">Doctrine</div>
+          <a href="../index.html#preface">Preface</a>
+          <a href="../index.html#chapters">The Fifteen Sutras</a>
+          <a href="../index.html#decree">The Decree</a>
+          <a href="archive.html">All Essays</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Colophon</div>
+          <span>Set in Fraunces &amp; Inter</span>
+          <span>Composed in HTML / CSS / JS</span>
+          <span>No frameworks, no build</span>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Coordinates</div>
+          <a href="https://veers.me">veers.me</a>
+          <span id="footerTime">— : — : —</span>
+          <span>MMXXVI</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© MMXXVI &nbsp;·&nbsp; System Nīti</span>
+      <span class="footer-mantra">सत्यमेव जयते</span>
+      <span>v.1.1.0</span>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
